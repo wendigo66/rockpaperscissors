@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Rock paper scissors</title>
+
+  </head>
+
+  <body>
+  <!--   <h1>rock paper scissors</h1>
+
+      <p>Choose rock paper or scissors</p>
+
+<div class="form">
+  <label for="guessField">Enter a rock paper or scissors: </label>
+  <input type="text" id="guessField" class="guessField">
+  <input type="submit" value="Submit guess" class="guessSubmit">
+</div>
+
+<div class="resultParas">
+  <p class="guesses"></p>
+  <p class="lastResult"></p>
+  <p class="lowOrHi"></p>
+</div> -->
+
+</body>
+
+<script>
+
+function playRound(playerSelection, computerSelection) {
+    console.log(playerSelection, computerSelection);
+
+  if (playerSelection.toLowerCase() == "rock" && computerSelection == "paper"){
+    losses += 1;
+    return "You lost " + computerSelection + " beats " + playerSelection + " Win: " + wins + " Loss: " + losses;
+    }
+    else if (playerSelection.toLowerCase() == "rock" && computerSelection == "scissors"){
+    wins += 1;
+    return "You won " + playerSelection + " beats " + computerSelection + " Win: " + wins + " Loss: " + losses;}
+    else if (playerSelection.toLowerCase() == "rock" && computerSelection == "rock"){
+        ties += 1;
+        return "You tied, you both selected " + computerSelection + " Win: " + wins + " Loss: " + losses;
+    }
+    else if (playerSelection.toLowerCase() == "scissors" && computerSelection == "scissors"){
+        ties += 1;
+        return "You tied, you both selected " + computerSelection + " Win: " + wins + " Loss: " + losses;
+}
+    else if (playerSelection.toLowerCase() == "scissors" && computerSelection == "rock"){
+        losses += 1;
+        return "You lost " + computerSelection + " beats " + playerSelection + " Win: " + wins + " Loss: " + losses;
+    }
+    else if (playerSelection.toLowerCase() == "scissors" && computerSelection == "paper"){
+    wins += 1;
+    return "You won " + playerSelection + " beats " + computerSelection + " Win: " + wins + " Loss: " + losses;}
+    else if (playerSelection.toLowerCase() == "paper" && computerSelection == "paper"){
+        ties += 1;
+        return "You tied, you both selected " + computerSelection + " Win: " + wins + " Loss: " + losses;}
+    else if (playerSelection.toLowerCase() == "paper" && computerSelection == "rock"){
+        wins += 1;
+        return "You won " + playerSelection + " beats " + computerSelection + " Win: " + wins + " Loss: " + losses;}
+    else if (playerSelection.toLowerCase() == "paper" && computerSelection == "scissors"){
+        losses += 1;
+        return "You lost " + computerSelection + " beats " + playerSelection + " Win: " + wins + " Loss: " + losses;
+    }
+    else{
+        console.log("You entered an invalid choice.");} 
+
+
+    }
+
+  
+
+function getComputerChoice(){
+    let choiceArray = [
+        "rock",
+        "paper",
+        "scissors"
+    ]
+    let randomNumber = Math.floor(Math.random()*choiceArray.length);
+    return choiceArray[randomNumber];
+}
+function playGame(){
+    
+    for (var i = 0; i < 5; i++) {
+        let playerSelection = prompt("Type rock paper or scissors - go!","");
+    const computerSelection = getComputerChoice();
+    console.log(playRound(playerSelection, computerSelection));
+}
+}
+let losses = 0;
+let wins = 0;
+let ties = 0;
+playgame();
+
+let playerSelection = prompt("Type rock paper or scissors - go!","");
+const computerSelection = getComputerChoice();
+console.log(playRound(playerSelection, computerSelection));
+
+
+</script>
+</html>
