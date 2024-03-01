@@ -20,6 +20,7 @@
 </div>
 
 <div class="resultParas">
+  <p></p>
 </div>
 
 </body>
@@ -28,47 +29,51 @@
 
 function playRound(playerSelection, computerSelection) {
     console.log(playerSelection, computerSelection);
+    const resultParas = document.querySelector(".resultParas p");
 //if the player loses
   if ((playerSelection == "rock" && computerSelection == "paper") || (playerSelection == "scissors" && computerSelection == "rock") || (playerSelection == "paper" && computerSelection == "scissors")){
     losses += 1;
     gameResult = "loss";
+    if (losses >= 5 ) {
+      resultParas.textContent = "You lost, refresh the page to play again";
+    }
     return resultStatement(playerSelection, computerSelection, gameResult);
     }
     //if the player wins
     else if ((playerSelection == "rock" && computerSelection == "scissors") || (playerSelection == "scissors" && computerSelection == "paper") || (playerSelection == "paper" && computerSelection == "rock")){
     wins += 1;
     gameResult = "win";
-    return resultStatement(playerSelection, computerSelection, gameResult);
+    if (wins >= 5 ) {
+      resultParas.textContent = "You won 5 games! Refresh the page to play again";
+    }
+    else {
+    return resultStatement(playerSelection, computerSelection, gameResult);}
   }
     //if the player ties
     else if (playerSelection == computerSelection){
         ties += 1;
         gameResult = "tie";
         return resultStatement(playerSelection, computerSelection, gameResult);
+    
     }
+
+
 
     }
 function resultStatement(playerSelection, computerSelection, gameResult){
-  const resultParas = document.querySelector(".resultParas");
-  const pResult = document.createElement("p");
+  const resultParas = document.querySelector(".resultParas p");
 
   if (gameResult == "win"){
     const winResult =  "You won " + playerSelection + " beats " + computerSelection + " Wins: " + wins + " Losses: " + losses + " Ties: " + ties;
-    const node = document.createTextNode(winResult);
-    pResult.appendChild(node);
-    resultParas.append(pResult);
+    resultParas.textContent = winResult;
   }
   else if (gameResult == "loss"){
     const winResult =  "You lost " + computerSelection + " beats " + playerSelection + " Wins: " + wins + " Losses: " + losses + " Ties: " + ties;
-    const node = document.createTextNode(winResult);
-    pResult.appendChild(node);
-    resultParas.append(pResult);
+    resultParas.textContent = winResult;
   }
   else{
     const winResult =   "You tied, you both selected " + computerSelection + " Wins: " + wins + " Losses: " + losses + " Ties: " + ties;
-    const node = document.createTextNode(winResult);
-    pResult.appendChild(node);
-    resultParas.append(pResult);
+    resultParas.textContent = winResult;
   }
 }
 
@@ -83,12 +88,7 @@ function getComputerChoice(){
     let randomNumber = Math.floor(Math.random()*choiceArray.length);
     return choiceArray[randomNumber];
 }
-function playGame(){
-    
- //   for (var i = 0; i < 5; i++) {
 
- //   }
-}
 const buttons = document.querySelectorAll("button");
 let playerSelection = "";
 let losses = 0;
@@ -98,10 +98,20 @@ let gameResult = "";
 buttons.forEach(button => {
   button.addEventListener('click', (e) => {
     let playerSelection = e.target.id;
-    console.log(playerSelection);
+    console.log(wins, losses);
+   // if (wins < 5 ) {
     const computerSelection = getComputerChoice();
     return playRound(playerSelection, computerSelection);
-  });
+  // }
+  // else{
+  //  const resultParas = document.querySelector(".resultParas p");
+  //  if (wins > 4){
+  //  resultParas.textContent = "You won 5 games! Refresh the page to play again";}
+  //  else{
+  //    resultParas.textContent = "You lost, refresh the page to play again";
+ //   }
+// }
+ });
 });
 
 
