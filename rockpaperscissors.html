@@ -99,18 +99,8 @@ buttons.forEach(button => {
   button.addEventListener('click', (e) => {
     let playerSelection = e.target.id;
     console.log(wins, losses);
-   // if (wins < 5 ) {
     const computerSelection = getComputerChoice();
     return playRound(playerSelection, computerSelection);
-  // }
-  // else{
-  //  const resultParas = document.querySelector(".resultParas p");
-  //  if (wins > 4){
-  //  resultParas.textContent = "You won 5 games! Refresh the page to play again";}
-  //  else{
-  //    resultParas.textContent = "You lost, refresh the page to play again";
- //   }
-// }
  });
 });
 
